@@ -1,3 +1,15 @@
+const searchBtn = document.getElementById("button-search");
+const searchInput = document.getElementById("search-field");
+
+searchInput.addEventListener("keypress", function(event) {
+    // event.preventDefault();
+    if (event.key == 'Enter'){
+        searchBtn.click();
+    }
+});
+
+
+
 document.getElementById('error-message').style.display = 'none';
 
 const searchFood = () =>{
@@ -8,6 +20,8 @@ const searchFood = () =>{
     document.getElementById('error-message').style.display = 'none';
     if(searchText == ''){
         // please write something to display
+        const errorMsg = document.getElementById('error');
+        errorMsg.innerText = `result not found`
     }
     else{
         //load data
@@ -50,7 +64,7 @@ const loadMealDetail = mealId =>{
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
     fetch(url)
     .then(res => res.json())
-    .then(data => displayMealDetail(data.meals[0]))
+    .then(data => displayBookDetail(data.meals[0]))
 }
 
 const displayMealDetail = meal =>{
